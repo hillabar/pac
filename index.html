@@ -51,7 +51,7 @@ var context = canvas.getContext("2d");
 
     function Start() {
         playMusic();
-        seconds=6;//need to edit by the user
+        seconds=60;//need to edit by the user
         numOfMons=3;//need to edit by the user
         monsArr = new Array (numOfMons);
         for (var i=0; i<numOfMons; i++)
@@ -510,7 +510,7 @@ var context = canvas.getContext("2d");
             window.alert("We have a Winner!!!\n Your score is: "+score);
         }
         }
-        if (score === 4) {
+        if (score === 70) {
             window.clearInterval(interval);
             window.alert("Game completed");
         } else {
