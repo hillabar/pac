@@ -504,13 +504,15 @@ var context = canvas.getContext("2d");
         time_elapsed = ~~(currentTime-start_time)/1000;
         if (seconds-time_elapsed <= 0) {
         if (score<150) {
+            window.clearInterval(interval);
             window.alert("You can do better\n Your score is: "+score);
         }
         else {
+            window.clearInterval(interval);
             window.alert("We have a Winner!!!\n Your score is: "+score);
         }
         }
-        if (score === 70) {
+        if (score === 100) {
             window.clearInterval(interval);
             window.alert("Game completed");
         } else {
