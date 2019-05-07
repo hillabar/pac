@@ -30,7 +30,12 @@ var shape = new Object();
     var context = canvas.getContext("2d");
 
     function Start() {
-        
+        window.addEventListener("keydown", function(e) {
+            // space and arrow keys
+            if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+            }
+        }, false);
         
         seconds=60;//need to edit by the user
         numOfMons=3;//need to edit by the user
@@ -681,8 +686,3 @@ $('#startGameButton').on('click', function (event) {
     });
   
   });
-/*----------------------------------------------------------?????????????????????*/
-
-  /***********************************/
-
-/***********************************/
