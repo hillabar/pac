@@ -3,6 +3,7 @@ var user;
 var dictionary;
 var shape = new Object();
     var bonus=new Object();
+    var timeBunny=new Object();
     var board;
     var ghostBoard;
     var score;
@@ -141,16 +142,12 @@ var shape = new Object();
             keysDown[e.code] = false;
         }, false);
         
-        intervalEat = setInterval(eatPacman, 150);
+        intervalEat = setInterval(eatPacman, 100);
         interval = setInterval(UpdatePosition, 150);
-        intervalEatBonus = setInterval(eatBonus, 150);
+        intervalEatBonus = setInterval(eatBonus, 100);
         intervalGift = setInterval(bonusMove, 600);
-        if (score<50)
-            intervalGhost = setInterval(moveGhosts, 600);
-        if (score>=50 && score<75)
-            intervalGhost = setInterval(moveGhosts, 400);
-        if (score>=75)
-            intervalGhost = setInterval(moveGhosts, 300);
+        //intervalTime = setInterval(clockyMove, 600);
+        intervalGhost = setInterval(moveGhosts, 500);
            
     }
 
@@ -163,31 +160,85 @@ var shape = new Object();
                 bonus.j = 1000;
             }
     }
+    function timeBunnyMove()
+    {
+        
+            var random = Math.random();
+            var is_Moved=false;
 
+            if (timeBunny.i>0 && timeBunny.i<600 && timeBunny.j>0 && timeBunny.j<540 && board[timeBunny.i/60+1][timeBunny.j/60]!==4 && board[timeBunny.i/60-1][timeBunny.j/60]!==4
+                && board[timeBunny.i/60][timeBunny.j/60-1]!==4 && board[timeBunny.i/60][timeBunny.j/60+1]!==4)
+            {
+                if (random<0.25)
+                {
+                    timeBunny.j+=60;
+                }
+                if (random>=0.25&&random<0.5)
+                {
+                    timeBunny.j-=60;
+                }
+                if (random>=0.5&&random<0.75)
+                {
+                    timeBunny.i+=60;
+                }
+                if (random>=0.75)
+                {
+                    timeBunny.i-=60;
+                }
+            }
+            
+            else
+            {
+                while (is_Moved===false)
+                {
+                        if (random<0.25 && timeBunny.j<540 && board[timeBunny.i/60][timeBunny.j/60+1]!==4)
+                    {
+                        timeBunny.j+=60;
+                        is_Moved=true;
+                    }
+                    if (random>=0.25 && random<0.5 && timeBunny.j>0 && board[timeBunny.i/60][timeBunny.j/60-1]!==4)
+                    {
+                        timeBunny.j-=60;
+                        is_Moved=true;
+                    }
+                    if (random>=0.5&&random<0.75 && timeBunny.i<600 && board[timeBunny.i/60+1][timeBunny.j/60]!==4)
+                    {
+                        timeBunny.i+=60;
+                        is_Moved=true;
+                    }
+                    if (random>=0.75 && timeBunny.i>0 && board[timeBunny.i/60-1][timeBunny.j/60]!==4)
+                    {
+                        timeBunny.i-=60;
+                        is_Moved=true;
+                    }
+                    random=Math.random();
+                }
+            }
+            ghostBoard[timeBunny.i/60][timeBunny.j/60]=200;
+            
+    }
     function bonusMove()
     {
         
-            //if (board[bonus.i/60][bonus.j/60-1]!==4)
-            //    bonus.j-=60;
-            var rand = Math.random();
-            var isMoved=false;
+            var random = Math.random();
+            var is_Moved=false;
 
             if (bonus.i>0 && bonus.i<600 && bonus.j>0 && bonus.j<540 && board[bonus.i/60+1][bonus.j/60]!==4 && board[bonus.i/60-1][bonus.j/60]!==4
                 && board[bonus.i/60][bonus.j/60-1]!==4 && board[bonus.i/60][bonus.j/60+1]!==4)
             {
-                if (rand<0.25)
+                if (random<0.25)
                 {
                     bonus.j+=60;
                 }
-                if (rand>=0.25&&rand<0.5)
+                if (random>=0.25&&random<0.5)
                 {
                     bonus.j-=60;
                 }
-                if (rand>=0.5&&rand<0.75)
+                if (random>=0.5&&random<0.75)
                 {
                     bonus.i+=60;
                 }
-                if (rand>=0.75)
+                if (random>=0.75)
                 {
                     bonus.i-=60;
                 }
@@ -195,29 +246,29 @@ var shape = new Object();
             
             else
             {
-                while (isMoved===false)
+                while (is_Moved===false)
                 {
-                        if (rand<0.25 && bonus.j<540 && board[bonus.i/60][bonus.j/60+1]!==4)
+                        if (random<0.25 && bonus.j<540 && board[bonus.i/60][bonus.j/60+1]!==4)
                     {
                         bonus.j+=60;
-                        isMoved=true;
+                        is_Moved=true;
                     }
-                    if (rand>=0.25 && rand<0.5 && bonus.j>0 && board[bonus.i/60][bonus.j/60-1]!==4)
+                    if (random>=0.25 && random<0.5 && bonus.j>0 && board[bonus.i/60][bonus.j/60-1]!==4)
                     {
                         bonus.j-=60;
-                        isMoved=true;
+                        is_Moved=true;
                     }
-                    if (rand>=0.5&&rand<0.75 && bonus.i<600 && board[bonus.i/60+1][bonus.j/60]!==4)
+                    if (random>=0.5&&random<0.75 && bonus.i<600 && board[bonus.i/60+1][bonus.j/60]!==4)
                     {
                         bonus.i+=60;
-                        isMoved=true;
+                        is_Moved=true;
                     }
-                    if (rand>=0.75 && bonus.i>0 && board[bonus.i/60-1][bonus.j/60]!==4)
+                    if (random>=0.75 && bonus.i>0 && board[bonus.i/60-1][bonus.j/60]!==4)
                     {
                         bonus.i-=60;
-                        isMoved=true;
+                        is_Moved=true;
                     }
-                    rand=Math.random();
+                    random=Math.random();
                 }
             }
             ghostBoard[bonus.i/60][bonus.j/60]=100;
@@ -348,6 +399,10 @@ var shape = new Object();
         bonus.i = 600;
         bonus.j = 540;
         ghostBoard[10][9]=100;
+
+        timeBunny.i=300;
+        timeBunny.j=300;
+        ghostBoard[5][5]=200;
     }
 
     function findRandomEmptyCell(board) {
@@ -416,8 +471,6 @@ var shape = new Object();
         lblScore.value = score;
         lblTime.value = ~~(seconds-time_elapsed);
         lblLife.value = life;
-        var startDraw;
-        var endDraw;
         var circleX;
         var circleY;
         for (var i = 0; i < 11; i++) {
@@ -457,7 +510,9 @@ var shape = new Object();
                 if (ghostBoard[i][j] === 53) {
                     context.drawImage(img2, monsArr[2].i, monsArr[2].j, 60, 60);
                 }
-                
+                if (ghostBoard[i][j] === 200) {
+                    context.drawImage(clocky, timeBunny.i, timeBunny.j, 45, 60);
+                }
                 if (board[i][j] === 2) {
                     
                     switch (direction) {
@@ -548,9 +603,11 @@ var shape = new Object();
         time_elapsed = ~~(currentTime-start_time)/1000;
         if (seconds-time_elapsed <= 0) {
         if (score<150) {
+            window.clearInterval(interval);
             window.alert("You can do better\n Your score is: "+score);
         }
         else {
+            window.clearInterval(interval);
             window.alert("We have a Winner!!!\n Your score is: "+score);
         }
         }
