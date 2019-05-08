@@ -146,8 +146,9 @@ var shape = new Object();
         interval = setInterval(UpdatePosition, 150);
         intervalEatBonus = setInterval(eatBonus, 100);
         intervalGift = setInterval(bonusMove, 600);
-        //intervalTime = setInterval(clockyMove, 600);
+        intervalTime = setInterval(timeBunnyMove, 600);
         intervalGhost = setInterval(moveGhosts, 500);
+        intervalEatTime = setInterval(eatTime,150);//******** */
            
     }
 
@@ -160,9 +161,19 @@ var shape = new Object();
                 bonus.j = 1000;
             }
     }
+
+    function eatTime()//*************** */
+    {
+        if (board[timeBunny.i/60][timeBunny.j/60]===2)
+            {
+                seconds+=10;
+                timeBunny.i = 1000;
+                timeBunny.j = 1000;
+            }
+    }
+
     function timeBunnyMove()
     {
-        
             var random = Math.random();
             var is_Moved=false;
 
@@ -214,9 +225,11 @@ var shape = new Object();
                     random=Math.random();
                 }
             }
-            ghostBoard[timeBunny.i/60][timeBunny.j/60]=200;
-            
+            var currI=timeBunny.i/60;
+            var currJ=timeBunny.j/60;
+            ghostBoard[currI][currJ]=200;     
     }
+
     function bonusMove()
     {
         
@@ -272,7 +285,6 @@ var shape = new Object();
                 }
             }
             ghostBoard[bonus.i/60][bonus.j/60]=100;
-            
     }
 
     function drawPoint(x, y, color){
@@ -310,10 +322,10 @@ var shape = new Object();
                     monsArr[idx].j+=60;
                 else
                 {
-                    if (monsArr[idx].j/60 === 1)
-                        monsArr[idx].i+=60;
-                    else
+                    if (monsArr[idx].i/60 === 1)
                         monsArr[idx].i-=60;
+                    else
+                        monsArr[idx].i+=60;
                 }
               }
 
@@ -501,6 +513,9 @@ var shape = new Object();
                 if (ghostBoard[i][j] === 100) {
                     context.drawImage(gift, bonus.i, bonus.j, 60, 60);
                 }
+                if (ghostBoard[i][j] === 200) {
+                    context.drawImage(clocky, timeBunny.i, timeBunny.j, 45, 60);
+                }
                 if (ghostBoard[i][j] === 51) {
                     context.drawImage(img, monsArr[0].i, monsArr[0].j, 60, 60);
                 }
@@ -510,9 +525,7 @@ var shape = new Object();
                 if (ghostBoard[i][j] === 53) {
                     context.drawImage(img2, monsArr[2].i, monsArr[2].j, 60, 60);
                 }
-                if (ghostBoard[i][j] === 200) {
-                    context.drawImage(clocky, timeBunny.i, timeBunny.j, 45, 60);
-                }
+                
                 if (board[i][j] === 2) {
                     
                     switch (direction) {
