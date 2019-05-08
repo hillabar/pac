@@ -39,7 +39,15 @@ var shape = new Object();
     var color_5;
     var color_15;
     var color_25;
+    var gameSound;
     var context = canvas.getContext("2d");
+
+    $(document).ready(function(){
+        color_5="red";
+        color_15="blue";
+        color_25="yellow";
+        secondNum=60;
+    });
 
     function Start() {
         window.addEventListener("keydown", function(e) {
@@ -53,7 +61,8 @@ var shape = new Object();
         else
             seconds=60;    
         numOfMons=ghostNum;
-      
+        gameSound = new Audio("music_pacman.mp3");
+        gameSound.play();
         monsArr = new Array (numOfMons);
         
         for (var i=0; i<numOfMons; i++)
@@ -548,6 +557,7 @@ var shape = new Object();
             score=0;
         if (life==0)
         {
+            gameSound.pause();
             window.clearInterval(interval);
             window.alert("You lost! \n your score is: "+score);
         }
@@ -710,15 +720,18 @@ var shape = new Object();
         time_elapsed = ~~(currentTime-start_time)/1000;
         if (seconds-time_elapsed <= 0) {
         if (score<150) {
+            gameSound.pause();
             window.clearInterval(interval);
             window.alert("You can do better\n Your score is: "+score);
         }
         else {
+            gameSound.pause();
             window.clearInterval(interval);
             window.alert("We have a Winner!!!\n Your score is: "+score);
         }
         }
         if (allFood == 0) {
+            gameSound.pause();
             window.clearInterval(interval);
             window.alert("Game completed");
         } else {
