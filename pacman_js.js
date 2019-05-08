@@ -1,4 +1,5 @@
 
+
 var user;
 var dictionary;
 var shape = new Object();
@@ -30,6 +31,20 @@ var shape = new Object();
     gift.src = 'present.png';
     var context = canvas.getContext("2d");
 
+
+    /*****qwe */
+var left;
+var right;
+var up;
+var down;
+var numberOfBalls;
+var points5_ball;
+var points15_ball;
+var points25_ball;
+var gameTime;
+var selectNumOfGhosts;
+
+    /********qwe */
     function Start() {
         window.addEventListener("keydown", function(e) {
             // space and arrow keys
@@ -271,10 +286,8 @@ var shape = new Object();
                     random=Math.random();
                 }
             }
-            ghostBoard[bonus.i/60][bonus.j/60]=100;
-            
+            ghostBoard[bonus.i/60][bonus.j/60]=100;   
     }
-
     function drawPoint(x, y, color){
     context.beginPath();
     context.arc(x, y, 60 , 0, 2 * Math.PI); // circle
@@ -672,6 +685,7 @@ $('#loginButton').on('click', function() {
 
 /*register form submit button*/
 $('#submit-button').on('submit', function(event){
+    prompt("hi");
 event.preventDefault();
 event.stopPropagation();
 var formAttributes = document.getElementsByClassName("form-control");
@@ -734,12 +748,68 @@ $('#refLogin').on('click', function(){
     $('#login').show(500);
   }
 });
-
+/*
 $('#startGameButton').on('click', function (event) {
     
+    event.preventDefault();
+    event.stopPropagation();
+    var settings = $('.gameSetting');
+    prompt(settings[0].value);
+    points = settings[0].value; //validate
+    prompt("hi");
+    5points = settings[1].value;
+    color_15_points = settings[2].value;
+    color_25_points = settings[3].value;
+    gameTime = parseInt(settings[4].value);
+    ghostsNumber = parseInt($('#selectNumOfGhosts').val());
+    $('#gameSettings').hide();
+    
+    $('#game').show(function(){
+      initiateGame = false;
+      cancel[0] = false;
+      cancel[1] = false;
+      Start();
+    });
+  });
+*/
+$('#startGameButton').on('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    left=document.getElementById('left');
+    prompt("left is :"+left.value);
+    right=document.getElementById('right');
+    prompt("right is :"+right.value);
+    up=document.getElementById('up');
+    prompt("up is :"+up.value);
+    down=document.getElementById('down');
+    prompt("down is :"+down.value);
+
+numberOfBalls=document.getElementById('myRange');
+prompt("numberOfBalls is :"+numberOfBalls.value);
+
+points5_ball=document.getElementById('5points');
+prompt("points5_ball is :"+points5_ball.value);
+points15_ball=document.getElementById('15points');
+prompt("points15_ball is :"+points15_ball.value);
+points25_ball=document.getElementById('25points');
+prompt("points25_ball is :"+points25_ball.value);
+
+gameTime=document.getElementById('gameTime');
+prompt("gameTime is :"+gameTime.value);
+
+selectNumOfGhosts=document.getElementById('selectNumOfGhosts');
+prompt("selectNumOfGhosts is :"+selectNumOfGhosts.value);
+
+    var settings = $('.gameSetting');
+    prompt("score:"+settings[0].value);
     $('#gameSettings').hide();
     $('#game').show(function(){
       Start();
     });
   
   });
+/*----------------------------------------------------------?????????????????????*/
+
+  /***********************************/
+
+/***********************************/
