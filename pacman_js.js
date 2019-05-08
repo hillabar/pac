@@ -4,6 +4,7 @@ var dictionary;
 var shape = new Object();
     var bonus=new Object();
     var timeBunny=new Object();
+    var heart=new Object();
     var board;
     var ghostBoard;
     var score;
@@ -16,6 +17,7 @@ var shape = new Object();
     var numOfMons;
     var monsArr;
     var life;
+    var heart;
     var seconds;
     var isArrows=true;
     var img = new Image();
@@ -28,6 +30,8 @@ var shape = new Object();
     clocky.src = 'time.png';
     var gift = new Image();
     gift.src = 'present.png';
+    var medicine = new Image();
+    medicine.src = 'medicine.png';
     var context = canvas.getContext("2d");
 
     function Start() {
@@ -145,9 +149,11 @@ var shape = new Object();
         intervalEat = setInterval(eatPacman, 100);
         interval = setInterval(UpdatePosition, 100);
         intervalEatBonus = setInterval(eatBonus, 100);
+        intervalEatMedicine = setInterval(eatMedicine,100);
         intervalGift = setInterval(bonusMove, 600);
         intervalTime = setInterval(timeBunnyMove, 600);
         intervalGhost = setInterval(moveGhosts, 500);
+        intervalMedicine = setInterval(medicineMove,600);
         intervalEatTime = setInterval(eatTime,100);//******** */
            
     }
@@ -169,6 +175,17 @@ var shape = new Object();
                 seconds+=10;
                 timeBunny.i = 1000;
                 timeBunny.j = 1000;
+            }
+    }
+
+
+    function eatMedicine()//*************** */
+    {
+        if (board[heart.i/60][heart.j/60]===2)
+            {
+                life+=1;
+                heart.i = 1000;
+                heart.j = 1000;
             }
     }
 
@@ -229,6 +246,65 @@ var shape = new Object();
             var currJ=timeBunny.j/60;
             ghostBoard[currI][currJ]=200;     
     }
+
+    function medicineMove()
+    {
+            var random1 = Math.random();
+            var is_Moved1=false;
+
+            if (heart.i>0 && heart.i<600 && heart.j>0 && heart.j<660 && board[heart.i/60+1][heart.j/60]!==4 && board[heart.i/60-1][heart.j/60]!==4
+                && board[heart.i/60][heart.j/60-1]!==4 && board[heart.i/60][heart.j/60+1]!==4)
+            {
+                if (random1<0.25)
+                {
+                    heart.j+=60;
+                }
+                if (random1>=0.25&&random1<0.5)
+                {
+                    heart.j-=60;
+                }
+                if (random1>=0.5&&random1<0.75)
+                {
+                    heart.i+=60;
+                }
+                if (random1>=0.75)
+                {
+                    heart.i-=60;
+                }
+            }
+            
+            else
+            {
+                while (is_Moved1===false)
+                {
+                        if (random1<0.25 && heart.j<660 && board[heart.i/60][heart.j/60+1]!==4)
+                    {
+                        heart.j+=60;
+                        is_Moved1=true;
+                    }
+                    if (random1>=0.25 && random1<0.5 && heart.j>0 && board[heart.i/60][heart.j/60-1]!==4)
+                    {
+                        heart.j-=60;
+                        is_Moved=true;
+                    }
+                    if (random1>=0.5&&random1<0.75 && heart.i<600 && board[heart.i/60+1][heart.j/60]!==4)
+                    {
+                        heart.i+=60;
+                        is_Moved1=true;
+                    }
+                    if (random1>=0.75 && heart.i>0 && board[heart.i/60-1][heart.j/60]!==4)
+                    {
+                        heart.i-=60;
+                        is_Moved1=true;
+                    }
+                    random1=Math.random();
+                }
+            }
+            var Icurr=heart.i/60;
+            var Jcurr=heart.j/60;
+            ghostBoard[Icurr][Jcurr]=300;     
+    }
+
 
     function bonusMove()
     {
@@ -387,9 +463,6 @@ var shape = new Object();
     }
 }
 
-
-
-
     function initGhosts()
     {
         monsArr[0].i = 0;
@@ -412,9 +485,13 @@ var shape = new Object();
         bonus.j = 660;
         ghostBoard[10][11]=100;
 
-        timeBunny.i=360;
+        timeBunny.i=540;
         timeBunny.j=360;
-        ghostBoard[6][6]=200;
+        ghostBoard[9][6]=200;
+
+        heart.i=180;
+        heart.j=360;
+        ghostBoard[3][6]=300;
     }
 
     function findRandomEmptyCell(board) {
@@ -516,6 +593,11 @@ var shape = new Object();
                 if (ghostBoard[i][j] === 200) {
                     context.drawImage(clocky, timeBunny.i, timeBunny.j, 45, 60);
                 }
+
+                if (ghostBoard[i][j] === 300) {
+                    context.drawImage(medicine, heart.i, heart.j, 60, 60);
+                }
+
                 if (ghostBoard[i][j] === 51) {
                     context.drawImage(img, monsArr[0].i, monsArr[0].j, 60, 60);
                 }
