@@ -33,6 +33,9 @@ var shape = new Object();
     gift.src = 'present.png';
     var medicine = new Image();
     medicine.src = 'medicine.png';
+    var ballsNum;
+    var ghostNum;
+    var secondNum;
     var context = canvas.getContext("2d");
 
     function Start() {
@@ -43,8 +46,8 @@ var shape = new Object();
             }
         }, false);
         
-        seconds=60;//need to edit by the user
-        numOfMons=3;//need to edit by the user
+        seconds=secondNum;//need to edit by the user
+        numOfMons=ghostNum;//need to edit by the user
       
         monsArr = new Array (numOfMons);
         
@@ -60,7 +63,7 @@ var shape = new Object();
         life=3;
         pac_color = "yellow";
         var cnt = 100;
-        var food_remain = 90;
+        var food_remain = ballsNum;
         var food_5_remain = Math.floor(food_remain*0.6);
         var food_15_remain = Math.floor(food_remain*0.3);
         var food_25_remain = Math.floor(food_remain*0.1);
@@ -835,7 +838,11 @@ $('#refLogin').on('click', function(){
 });
 
 $('#startGameButton').on('click', function (event) {
-    
+    event.preventDefault();
+    event.stopPropagation();
+    ballsNum=document.getElementById('myRange').value;
+    ghostNum=document.getElementById('selectNumOfGhosts').value;//**************** */
+    secondNum=document.getElementById('gameTime').value;//************** */
     $('#gameSettings').hide();
     $('#game').show(function(){
       Start();
