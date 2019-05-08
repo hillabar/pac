@@ -36,6 +36,9 @@ var shape = new Object();
     var ballsNum;
     var ghostNum;
     var secondNum;
+    var color_5;
+    var color_15;
+    var color_25;
     var context = canvas.getContext("2d");
 
     function Start() {
@@ -45,9 +48,11 @@ var shape = new Object();
                 e.preventDefault();
             }
         }, false);
-        
-        seconds=secondNum;//need to edit by the user
-        numOfMons=ghostNum;//need to edit by the user
+        if (secondNum>60)
+            seconds=secondNum;
+        else
+            seconds=60;    
+        numOfMons=ghostNum;
       
         monsArr = new Array (numOfMons);
         
@@ -574,21 +579,21 @@ var shape = new Object();
                 if (board[i][j] === 5) {
                     context.beginPath();
                     context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
-                    context.fillStyle = "black"; //color
+                    context.fillStyle = color_5; //color
                     context.fill();
                 }
 
                 if (board[i][j] === 15) {
                     context.beginPath();
                     context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
-                    context.fillStyle = "blue"; //color
+                    context.fillStyle = color_15; //color
                     context.fill();
                 }
 
                 if (board[i][j] === 25) {
                     context.beginPath();
                     context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
-                    context.fillStyle = "red"; //color
+                    context.fillStyle = color_25; //color
                     context.fill();
                 }
                 if (ghostBoard[i][j] === 100) {
@@ -843,6 +848,9 @@ $('#startGameButton').on('click', function (event) {
     ballsNum=document.getElementById('myRange').value;
     ghostNum=document.getElementById('selectNumOfGhosts').value;//**************** */
     secondNum=document.getElementById('gameTime').value;//************** */
+    color_5=document.getElementById("5points").value;
+    color_15=document.getElementById("15points").value;
+    color_25=document.getElementById("25points").value;
     $('#gameSettings').hide();
     $('#game').show(function(){
       Start();
