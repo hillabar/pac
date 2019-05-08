@@ -880,3 +880,34 @@ $('#startGameButton').on('click', function (event) {
     });
   
   });
+
+  $('#newGame').on('click', function (event) {
+    ResetGame();
+  bootbox.confirm({
+    message:"Do you want to start a new a game?",
+    buttons: {
+        confirm: {
+          label: 'New Game',
+          className: 'btn-success'
+        },
+        cancel: {
+          label: 'Resume Game',
+          className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+      console.log("AlertCallback");
+      if(result) {
+        $("#game").hide();
+        $("#gameSettings").show(1000);
+      }
+      else{
+        Start();
+      }
+    }
+  });
+  });
+  function ResetGame(){
+    window.clearInterval(interval);
+    gameSound.pause();
+  }
