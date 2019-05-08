@@ -81,7 +81,7 @@
     </div>
 
     <!---------------------register----------------->
-    <div id="register" class="content" style="text-align:center">
+        <div id="register" class="content" style="text-align:center">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
             <form action="/action_page.php"  id="register-form" class="login100-form validate-form">
@@ -96,6 +96,8 @@
                     <input class="form-control input100" type="text" placeholder="Enter your last name" name="lastName" required><br>
                     <label for="email">Email</label>
                     <input class="form-control input100" type="text" placeholder="name@domain.com" name="email" required><br>
+                    <label for="lastname">Birth Date</label><br>
+                    <input class="form-control input100" type="date" placeholder="Enter your date of birth" name="birthdate" size="100" required><br>
                     <button onclick="myFunctiontowelcome()"   type="submit" class="signupbtn">Register</button>
                     <button type="reset" class="cancelbtn">Reset</button>
                 </div>
