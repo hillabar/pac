@@ -42,12 +42,22 @@ var shape = new Object();
     var gameSound;
     var context = canvas.getContext("2d");
 
-    $(document).ready(function(){
-        color_5="red";
-        color_15="blue";
-        color_25="yellow";
-        secondNum=60;
-    });
+    $('#randomGameButton').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        ballsNum= Math.floor(Math.random() * Math.floor(40))+50;
+        ghostNum=Math.floor(Math.random() * Math.floor(3))+1;//****** */
+        secondNum=Math.floor(Math.random() * Math.floor(120))+60;//****** */
+        
+        color_5="#"+((1<<24)*Math.random()|0).toString(16);
+        color_15="#"+((1<<24)*Math.random()|0).toString(16);
+        color_25="#"+((1<<24)*Math.random()|0).toString(16);
+        $('#gameSettings').hide();
+        $('#game').show(function(){
+          Start();
+        });
+      
+      });
 
     function Start() {
         window.addEventListener("keydown", function(e) {

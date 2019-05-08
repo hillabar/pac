@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-        <img  id="logo" src="source3.gif" alt="logo" />
+        <img  id="logo" src="menu.png"  alt="logo" height= "80" width= "30"/>
 <head>
         <title>Page Title</title>
         
@@ -181,7 +181,7 @@
                 </table>
               
                 <button onclick="openStart()" id="startGameButton" type="submit">Set and Play!</button>
-                <button type="button" onclick="setRandom()">random settings</button>
+                <button type="button" id="randomGameButton">random settings</button>
                 <button type="reset" >Reset</button>
             </form>
         </div>
@@ -212,14 +212,28 @@
         <div class="modalAbout-content">
           <div class="modalAbout-header">
             <span class="closeAbout">&times;</span>
-            <h2>Modal Header</h2>
+            <h2>ABOUT</h2>
           </div>
-          <div class="modalAbout-body">
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
+          <div class="modalAbout-body" style="color: black">
+            <p>The score is minimun 0, even after the pacman lose lives.<br/>
+              The monsters wil become faster after earn 20 scores, and even faster after 35.<br/>
+              We added a present that containes 50 scores bonus, and clocky-bunny that containes 10 seconds bonus.<br/>
+              The hardest challenges in this assigment were to find the optimle way for the ghosts to catch the pacman without getting slow and without collide with the walls,<br/>
+              and to combine the game in the JS file to the main HTML file together.</br>
+              We used these jquery:</br>
+              http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js</br>
+              http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js</br>
+              http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js</p>
+
+              
+              The site address-
+              https://hillabar.github.io/pac/
+              
+              Hilla Barnea 205542566
+              Razy Alshekh 318433469</p>
           </div>
           <div class="modalAbout-footer">
-            <h3>Modal Footer</h3>
+            
           </div>
         </div>
       
