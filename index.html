@@ -98,6 +98,9 @@
                     <input class="form-control input100" type="text" placeholder="name@domain.com" name="email" required><br>
                     <button onclick="myFunctiontowelcome()"   type="submit" class="signupbtn">Register</button>
                     <button type="reset" class="cancelbtn">Reset</button>
+                    <div class="container-login100-form-btn">
+                            <input class="login100-form-btn regFormButton" id="submit-button" type="submit" value="Register" >
+                        </div>
                 </div>
             </form>
         </div>
@@ -105,38 +108,38 @@
     <!--------------------- Pacman game --------------------->
     <div id="gameSettings" class="content" style="text-align:center" hidden class="form-style-8">
             <form id="settingsForm">
-                <table >
+                <table>
                     <tr>
                         <td><h3 style="text-align:center">command</h3> </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>left</td>
-                        <td><input  type="text" id="left" class="controls" onkeydown="getkey(event)"
+                        <td><input class="gameSetting input100" type="text" id="left" class="controls" onkeydown="getkey(event)"
                                 placeholder="press on your keyboard to set left" required>
                         </td>
                     </tr>
                     <tr>
                         <td>right</td>
-                        <td><input type="text" id="right" class="controls" onkeydown="getkey2(event)"
+                        <td><input class="gameSetting input100" type="text" id="right" class="controls" 
                                 placeholder="press on your keyboard to set right" required></td>
                     </tr>
                     <tr>
                         <td>up</td>
-                        <td><input type="text" id="up" class="controls" onkeydown="getkey3(event)"
+                        <td><input class="gameSetting input100" type="text" id="up" class="controls" 
                                 placeholder="press on your keyboard to set up" required>
                         </td>
                     </tr>
                     <tr>
                         <td>down</td>
-                        <td><input  type="text" id="down" class="controls" onkeydown="getkey4(event)"
+                        <td><input class="gameSetting input100" type="text" id="down" class="controls" 
                                 placeholder="press on your keyboard to set down" required>
                         </td>
                     </tr> 
                     <tr>
                         <div class="slidecontainer">
                         <td>number of balls<br> in the game</td>
-                        <td> <input  type="range" min="50" max="90" value="50" class="slider" id="myRange"></td>
+                        <td> <input class="gameSetting input100" type="range" min="50" max="100" value="50" class="slider" id="myRange"></td>
                         <td>
                                 <p id="value">Value: </p>
                         </td>
@@ -151,22 +154,22 @@
                             <table>
                                 <tr>
                                     <td>5 points ball</td>
-                                    <td><input  type="color" id="5points" class="color" required></td>
+                                    <td><input class="gameSetting input100" type="color" id="5points" class="color" required></td>
                                 </tr>
                                 <tr>
                                     <td>15 points ball</td>
-                                    <td><input  type="color" id="15points" class="color" required></td>
+                                    <td><input class="gameSetting input100" type="color" id="15points" class="color" required></td>
                                 </tr>
                                 <tr>
                                     <td>25 points ball</td>
-                                    <td><input  type="color" id="25points" class="color" required></td>
+                                    <td><input class="gameSetting input100" type="color" id="25points" class="color" required></td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                     <tr>
                         <td>maximal time for game<br>(in seconds)</td>
-                        <td><input  type="number" min="60" id="gameTime" required></td>
+                        <td><input class="gameSetting input100" type="number" min="60" id="gameTime" required></td>
                     </tr>
                     <tr>
                         <td>number of ghosts in the game</td>
@@ -179,7 +182,10 @@
                         </td>
                     </tr>
                 </table>
-                <button id="startGameButton" type="submit">Set and Play!</button>
+                <div>
+                        <input class="regFormButton" id="startGameButton" type="submit" value="Start Game" >
+                </div>
+                <button onclick="openStart()" type="submit">Set and Play!</button>
                 <button type="button" onclick="setRandom()">random settings</button>
                 <button type="reset" >Reset</button>
             </form>
@@ -302,49 +308,29 @@ function barClicked() {
             modal.style.display = "none";
           }
         }
-</script>
+        </script>
         
         <script>
                 function myFunctiontowelcome() {
-                    event.preventDefault();
-event.stopPropagation();
-var formAttributes = document.getElementsByClassName("form-control");
-var userName = document.getElementById('usernameID').value;
-var firstName = formAttributes[5].value;
-var lastName = formAttributes[2].value;
-var date = formAttributes[3].value;
-var password = document.getElementById('passwordID').value;
-dictionary.add(userName, password);
-$('#register').hide(500);
-$(".form-control").val('');
-$('#welcome').slideDown(500);
-
+                    $('#register').hide();
+                    $('#welcome').show();
                 }
         </script>
-<script>
 
-function getkey(event) {
-    var x = event.key;
-    document.getElementById('left').value = x;
-    
-}
-function getkey2(event) {
-    var x = event.key;
-    document.getElementById('right').value = x;
-    
-}
-function getkey3(event) {
-    var x = event.key;
-    document.getElementById('up').value = x;
-    
-}
-function getkey4(event) {
-    var x = event.key;
-    document.getElementById('down').value = x;
-    
-}
-  
-</script>   
+<script>
+        function openStart() {
+            $('#gameSettings').hide();
+            start();
+            $('#game').show();
+        }
+</script>
+<script>
+        function getkey(event) {
+          var x = event.key;
+          document.getElementById("demo").innerHTML = "The pressed key was: " + x;
+        }
+        </script>
+        
 
 </body>
 
