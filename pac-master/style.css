@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
   }
-  
+
   body {
     position: relative;
     background: url('http://thecodeplayer.com/u/m/b1.png') no-repeat center center fixed;
@@ -96,8 +96,7 @@
   }
   
   #nav a:hover {
-    background:rgba(200,40,60,0.9);
-    
+    background: #357FFD;
   }
   
   ul {
@@ -506,4 +505,47 @@ form {border: 3px solid #f1f1f1;
   @keyframes fadeIn {
     from {opacity: 0} 
     to {opacity: 1}
+  }
+
+  /*gameStyle*/
+  .form-inline {  
+    border: 3px solid #f1f1f1;
+    width: 100%;
+    display: inline-block;
+    
+  }
+  
+  .form-inline label {
+    display: inline-block;
+  }
+  .form-inline input {
+    vertical-align: middle;
+    width: 20%;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  .form-inline button {
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .form-inline button:hover {
+    background-color: royalblue;
+  }
+  
+  @media (max-width: 800px) {
+    .form-inline input {
+      margin: 10px 0;
+    }
+    
+    .form-inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
