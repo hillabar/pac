@@ -143,12 +143,12 @@ var shape = new Object();
         }, false);
         
         intervalEat = setInterval(eatPacman, 100);
-        interval = setInterval(UpdatePosition, 150);
+        interval = setInterval(UpdatePosition, 100);
         intervalEatBonus = setInterval(eatBonus, 100);
         intervalGift = setInterval(bonusMove, 600);
         intervalTime = setInterval(timeBunnyMove, 600);
         intervalGhost = setInterval(moveGhosts, 500);
-        intervalEatTime = setInterval(eatTime,150);//******** */
+        intervalEatTime = setInterval(eatTime,100);//******** */
            
     }
 
