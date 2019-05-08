@@ -68,10 +68,10 @@ var shape = new Object();
             board[i] = new Array();
             ghostBoard[i] = new Array();
             //put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-            for (var j = 0; j < 10; j++) {
+            for (var j = 0; j < 12; j++) {
                 
                 if ((i === 2 && j === 1) || (i === 1 && j === 2) || (i === 2 && j === 2) || (i === 4 && j === 1) || (i === 5 && j === 1)|| (i === 6 && j === 1)|| (i === 8 && j === 1)|| (i === 8 && j === 2)|| (i === 9 && j === 2)|| (i === 5 && j === 2)||
-                (i === 2 && j === 8) || (i === 1 && j === 7) || (i === 2 && j === 7) || (i === 4 && j === 8) || (i === 5 && j === 8)|| (i === 6 && j === 8)|| (i === 8 && j === 8)|| (i === 8 && j === 7)|| (i === 9 && j === 7)|| (i === 5 && j === 7)) 
+                (i === 2 && j === 10) || (i === 1 && j === 9) || (i === 2 && j === 9) || (i === 4 && j === 10) || (i === 5 && j === 10)|| (i === 6 && j === 10)|| (i === 8 && j === 10)|| (i === 8 && j === 9)|| (i === 9 && j === 9)|| (i === 5 && j === 9)) 
                 {    
                     board[i][j] = 4;
                 } 
@@ -177,7 +177,7 @@ var shape = new Object();
             var random = Math.random();
             var is_Moved=false;
 
-            if (timeBunny.i>0 && timeBunny.i<600 && timeBunny.j>0 && timeBunny.j<540 && board[timeBunny.i/60+1][timeBunny.j/60]!==4 && board[timeBunny.i/60-1][timeBunny.j/60]!==4
+            if (timeBunny.i>0 && timeBunny.i<600 && timeBunny.j>0 && timeBunny.j<660 && board[timeBunny.i/60+1][timeBunny.j/60]!==4 && board[timeBunny.i/60-1][timeBunny.j/60]!==4
                 && board[timeBunny.i/60][timeBunny.j/60-1]!==4 && board[timeBunny.i/60][timeBunny.j/60+1]!==4)
             {
                 if (random<0.25)
@@ -202,7 +202,7 @@ var shape = new Object();
             {
                 while (is_Moved===false)
                 {
-                        if (random<0.25 && timeBunny.j<540 && board[timeBunny.i/60][timeBunny.j/60+1]!==4)
+                        if (random<0.25 && timeBunny.j<660 && board[timeBunny.i/60][timeBunny.j/60+1]!==4)
                     {
                         timeBunny.j+=60;
                         is_Moved=true;
@@ -236,7 +236,7 @@ var shape = new Object();
             var random = Math.random();
             var is_Moved=false;
 
-            if (bonus.i>0 && bonus.i<600 && bonus.j>0 && bonus.j<540 && board[bonus.i/60+1][bonus.j/60]!==4 && board[bonus.i/60-1][bonus.j/60]!==4
+            if (bonus.i>0 && bonus.i<600 && bonus.j>0 && bonus.j<660 && board[bonus.i/60+1][bonus.j/60]!==4 && board[bonus.i/60-1][bonus.j/60]!==4
                 && board[bonus.i/60][bonus.j/60-1]!==4 && board[bonus.i/60][bonus.j/60+1]!==4)
             {
                 if (random<0.25)
@@ -261,7 +261,7 @@ var shape = new Object();
             {
                 while (is_Moved===false)
                 {
-                        if (random<0.25 && bonus.j<540 && board[bonus.i/60][bonus.j/60+1]!==4)
+                        if (random<0.25 && bonus.j<660 && board[bonus.i/60][bonus.j/60+1]!==4)
                     {
                         bonus.j+=60;
                         is_Moved=true;
@@ -315,10 +315,10 @@ var shape = new Object();
                 }
               }
 
-              if (monsArr[idx].j/60 === 8 && (monsArr[idx].i/60 === 1 || monsArr[idx].i/60 === 9))  
+              if (monsArr[idx].j/60 === 10 && (monsArr[idx].i/60 === 1 || monsArr[idx].i/60 === 9))  
               {
                 isMoved=true;
-                if (shape.j>7)
+                if (shape.j>9)
                     monsArr[idx].j+=60;
                 else
                 {
@@ -338,10 +338,10 @@ var shape = new Object();
                     monsArr[idx].j+=60;
               }
 
-              if (monsArr[idx].j/60 === 7 && (monsArr[idx].i/60 === 0 || monsArr[idx].i/60 === 10))
+              if (monsArr[idx].j/60 === 9 && (monsArr[idx].i/60 === 0 || monsArr[idx].i/60 === 10))
               {
                 isMoved=true;
-                if (shape.j>7)
+                if (shape.j>9)
                     monsArr[idx].j+=60;
                 else
                     monsArr[idx].j-=60;
@@ -404,25 +404,25 @@ var shape = new Object();
 
         if(numOfMons >= 3) {
         monsArr[2].i = 0;
-        monsArr[2].j = 540;
-        ghostBoard[0][9]=53;
+        monsArr[2].j = 660;
+        ghostBoard[0][11]=53;
         }
 
         bonus.i = 600;
-        bonus.j = 540;
-        ghostBoard[10][9]=100;
+        bonus.j = 660;
+        ghostBoard[10][11]=100;
 
-        timeBunny.i=300;
-        timeBunny.j=300;
-        ghostBoard[5][5]=200;
+        timeBunny.i=360;
+        timeBunny.j=360;
+        ghostBoard[6][6]=200;
     }
 
     function findRandomEmptyCell(board) {
         var i = Math.floor((Math.random() * 10) + 1);
-        var j = Math.floor((Math.random() * 9) + 1);
+        var j = Math.floor((Math.random() * 11) + 1);
         while (board[i][j] !== 0) {
             i = Math.floor((Math.random() * 10) + 1);
-            j = Math.floor((Math.random() * 9) + 1);
+            j = Math.floor((Math.random() * 11) + 1);
         }
         return [i, j];
     }
@@ -486,7 +486,7 @@ var shape = new Object();
         var circleX;
         var circleY;
         for (var i = 0; i < 11; i++) {
-            for (var j = 0; j < 10; j++) {
+            for (var j = 0; j < 12; j++) {
                 var center = new Object();
                 center.x = i * 60 + 30;
                 center.y = j * 60 + 30;
@@ -588,7 +588,7 @@ var shape = new Object();
             }
         }
         if (x === 2) {
-            if (shape.j < 9 && board[shape.i][shape.j + 1] !== 4) {
+            if (shape.j < 11 && board[shape.i][shape.j + 1] !== 4) {
                 shape.j++;
             }
         }
