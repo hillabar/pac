@@ -19,6 +19,7 @@ var shape = new Object();
     var life;
     var heart;
     var seconds;
+    var allFood;
     var isArrows=true;
     var img = new Image();
     img.src = 'mon.png';
@@ -63,7 +64,7 @@ var shape = new Object();
         var food_5_remain = Math.floor(food_remain*0.6);
         var food_15_remain = Math.floor(food_remain*0.3);
         var food_25_remain = Math.floor(food_remain*0.1);
-        var allFood = food_5_remain+food_15_remain+food_25_remain;
+        allFood = food_5_remain+food_15_remain+food_25_remain;
         food_remain = allFood;
         var pacman_remain = 1;
         start_time = new Date();
@@ -686,12 +687,15 @@ var shape = new Object();
         }
         if (board[shape.i][shape.j] === 5) {
             score+=5;
+            allFood--;
         }
         if (board[shape.i][shape.j] === 15) {
             score+=15;
+            allFood--;
         }
         if (board[shape.i][shape.j] === 25) {
             score+=25;
+            allFood--;
         }
         board[shape.i][shape.j] = 2;
         var currentTime = new Date();
@@ -706,7 +710,7 @@ var shape = new Object();
             window.alert("We have a Winner!!!\n Your score is: "+score);
         }
         }
-        if (score === 4) {
+        if (allFood == 0) {
             window.clearInterval(interval);
             window.alert("Game completed");
         } else {
