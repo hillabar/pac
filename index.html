@@ -98,9 +98,6 @@
                     <input class="form-control input100" type="text" placeholder="name@domain.com" name="email" required><br>
                     <button onclick="myFunctiontowelcome()"   type="submit" class="signupbtn">Register</button>
                     <button type="reset" class="cancelbtn">Reset</button>
-                    <div class="container-login100-form-btn">
-                            <input class="login100-form-btn regFormButton" id="submit-button" type="submit" value="Register" >
-                        </div>
                 </div>
             </form>
         </div>
@@ -182,10 +179,8 @@
                         </td>
                     </tr>
                 </table>
-                <div>
-                        <input class="regFormButton" id="startGameButton" type="submit" value="Start Game" >
-                </div>
-                <button onclick="openStart()" type="submit">Set and Play!</button>
+              
+                <button onclick="openStart()" id="startGameButton" type="submit">Set and Play!</button>
                 <button type="button" onclick="setRandom()">random settings</button>
                 <button type="reset" >Reset</button>
             </form>
@@ -311,11 +306,22 @@ function barClicked() {
         </script>
         
         <script>
-                function myFunctiontowelcome() {
-                    $('#register').hide();
-                    $('#welcome').show();
-                }
-        </script>
+          function myFunctiontowelcome() {
+              event.preventDefault();
+event.stopPropagation();
+var formAttributes = document.getElementsByClassName("form-control");
+var userName = document.getElementById('usernameID').value;
+var firstName = formAttributes[5].value;
+var lastName = formAttributes[2].value;
+var date = formAttributes[3].value;
+var password = document.getElementById('passwordID').value;
+dictionary.add(userName, password);
+$('#register').hide(500);
+$(".form-control").val('');
+$('#welcome').slideDown(500);
+
+          }
+  </script>
 
 <script>
         function openStart() {
